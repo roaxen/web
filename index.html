@@ -16,16 +16,37 @@
     <button onclick="enviarNombre()">Enviar</button>
 
     <p id="saludo"></p>
+    <div id="videoContainer"></div>
   </div>
 
   <script>
     function enviarNombre() {
       const nombre = document.getElementById('nombre').value.trim();
       const saludo = document.getElementById('saludo');
+      const videoContainer = document.getElementById('videoContainer');
+
       if(nombre) {
-        saludo.textContent = `¡Gracias por tu saludo, ${nombre}! ❤️`;
+        // Mostrar mensaje de agradecimiento
+        saludo.textContent = `¡Muchas gracias por tu saludo, ${nombre}! ❤️`;
+
+        // Limpiar cualquier video previo
+        videoContainer.innerHTML = "";
+
+        // Insertar un reproductor de YouTube
+        const iframe = document.createElement('iframe');
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.src = "https://www.youtube.com/watch?v=mo7MpQZRd5Q&list=RDmo7MpQZRd5Q&start_radio=1"; // URL del video de youtube 
+        iframe.title = "Video de boda";
+        iframe.frameBorder = "0";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+
+        videoContainer.appendChild(iframe);
+
       } else {
         saludo.textContent = "Por favor, escribe tu nombre antes de enviar.";
+        videoContainer.innerHTML = ""; // borrar video si no hay nombre
       }
     }
   </script>
